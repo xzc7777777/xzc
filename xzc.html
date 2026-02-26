@@ -3,483 +3,549 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人网站</title>
+    <title>个人官网</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --accent-color: #f093fb;
         }
-        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMDAwMDAwMTAiPjwvcmVjdD4KPHBhdGggZD0iTTAgNUw1IDBaTTYgNEw0IDZaTS0xIDFMMSAtMVoiIHN0cm9rZT0iIzAwMDAwMDEwIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+');
+            opacity: 0.1;
+        }
+        header .container {
+            position: relative;
+            z-index: 1;
+        }
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease-out;
+        }
+        header p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: rgba(26, 26, 26, 0.95);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-        
-        .nav-links {
+        nav ul {
             display: flex;
+            justify-content: center;
             list-style: none;
         }
-        
-        .nav-links li {
-            margin-left: 20px;
+        nav ul li {
+            margin: 0 25px;
         }
-        
-        .nav-links a {
-            color: #fff;
+        nav ul li a {
+            color: var(--text-color);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
         }
-        
-        .nav-links a:hover {
-            color: #4CAF50;
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
         }
-        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
         section {
-            padding: 60px 0;
-        }
-        
-        .hero {
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: #fff;
-            text-align: center;
             padding: 100px 0;
+            position: relative;
         }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #fff;
-            color: #4CAF50;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: #f0f0f0;
-        }
-        
-        h2 {
-            font-size: 2.5rem;
+        .section-title {
             text-align: center;
-            margin-bottom: 40px;
-            color: #333;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            position: relative;
         }
-        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+        .about {
+            background: var(--bg-color);
+        }
         .about-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 40px;
             align-items: center;
+            gap: 60px;
         }
-        
         .about-text {
             flex: 1;
             min-width: 300px;
+            animation: fadeInLeft 1s ease-out;
         }
-        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+        }
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
         .about-image {
             flex: 1;
             min-width: 300px;
-            text-align: center;
+            animation: fadeInRight 1s ease-out;
         }
-        
         .about-image img {
-            max-width: 300px;
+            width: 100%;
+            max-width: 400px;
             border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--accent-color);
+            transition: transform 0.5s ease;
         }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        .about-image img:hover {
+            transform: scale(1.05);
         }
-        
-        .skill-card {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+        .projects {
+            background: var(--card-bg);
         }
-        
-        .skill-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .skill-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #4CAF50;
-        }
-        
-        .skill-card ul {
-            list-style: none;
-        }
-        
-        .skill-card li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-        }
-        
-        .skill-card li:before {
-            content: '•';
-            color: #4CAF50;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-        
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .project-card {
-            background-color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .project-card-content {
-            padding: 20px;
-        }
-        
-        .project-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-        
-        .project-card p {
-            color: #666;
-        }
-        
-        .contact-content {
-            display: flex;
-            flex-wrap: wrap;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
-            align-items: flex-start;
         }
-        
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .contact-form {
-            flex: 1;
-            min-width: 300px;
-            background-color: #fff;
+        .project-card {
+            background: var(--bg-color);
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px;
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent-color);
+        }
+        .project-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
+            color: var(--accent-color);
         }
-        
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 150px;
+        .project-card p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
-        
-        .contact-form button {
+        .project-card a {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            padding: 12px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
         }
-        
-        .contact-form button:hover {
-            background-color: #45a049;
+        .project-card a:hover::before {
+            left: 100%;
         }
-        
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 30px 0;
+        .project-card a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
-        
-        .footer-content {
+        .skills {
+            background: var(--bg-color);
+        }
+        .skills-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
+            gap: 25px;
+            justify-content: center;
         }
-        
-        .social-links {
+        .skill-item {
+            background: var(--card-bg);
+            padding: 18px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .skill-item:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .contact {
+            background: var(--card-bg);
+            text-align: center;
+        }
+        .contact h2 {
+            color: var(--text-color);
+        }
+        .contact-info {
             display: flex;
-            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
         }
-        
-        .social-links a {
-            color: #fff;
+        .contact-item {
+            text-align: center;
+            transition: all 0.3s ease;
+            padding: 30px;
+            border-radius: 15px;
+            background: var(--bg-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 200px;
+        }
+        .contact-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .contact-item h3 {
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+        .contact-item p {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+        .contact-item a {
+            color: var(--primary-color);
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        
-        .social-links a:hover {
-            color: #4CAF50;
+        .contact-item a:hover {
+            color: var(--accent-color);
         }
-        
+        footer {
+            background: #111;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
         @media (max-width: 768px) {
-            nav {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            header p {
+                font-size: 1.2rem;
+            }
+            nav ul {
                 flex-direction: column;
-                gap: 10px;
+                align-items: center;
             }
-            
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
+            nav ul li {
+                margin: 10px 0;
             }
-            
-            .nav-links li {
-                margin-left: 0;
+            .about-content {
+                flex-direction: column;
+                text-align: center;
             }
-            
-            .hero h1 {
+            .section-title {
                 font-size: 2rem;
             }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .about-content,
-            .contact-content {
+            .contact-info {
                 flex-direction: column;
+                align-items: center;
             }
+            .contact-item {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <nav>
-                <div class="logo">我的个人网站</div>
-                <ul class="nav-links">
-                    <li><a href="#home">首页</a></li>
-                    <li><a href="#about">关于我</a></li>
-                    <li><a href="#skills">技能</a></li>
-                    <li><a href="#projects">项目</a></li>
-                    <li><a href="#contact">联系方式</a></li>
-                </ul>
-            </nav>
+            <h1>许增灿</h1>
+            <p>全栈开发工程师 | UI/UX设计师</p>
         </div>
     </header>
     
-    <section id="home" class="hero">
+    <nav>
         <div class="container">
-            <h1>你好，我是 <span>开发者</span></h1>
-            <p>专注于Web开发和用户体验设计</p>
-            <a href="#about" class="btn">了解更多</a>
+            <ul>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#projects">作品</a></li>
+                <li><a href="#skills">技能</a></li>
+                <li><a href="#contact">联系方式</a></li>
+            </ul>
         </div>
-    </section>
+    </nav>
     
-    <section id="about">
+    <section id="about" class="about">
         <div class="container">
-            <h2>关于我</h2>
+            <h2 class="section-title fade-in">关于我</h2>
             <div class="about-content">
-                <div class="about-text">
-                    <p>我是一名热爱编程的Web开发者，拥有多年的前端开发经验。我热衷于创建美观、实用的网站，注重用户体验和代码质量。</p>
-                    <p>在我的职业生涯中，我参与了多个项目的开发，包括企业官网、电商平台和管理系统，积累了丰富的经验。</p>
-                    <p>除了编程，我还喜欢阅读技术博客、学习新技术，并且热衷于分享我的知识和经验。我相信持续学习是成为优秀开发者的关键。</p>
-                    <a href="#" class="btn">下载简历</a>
+                <div class="about-text fade-in">
+                    <h3>个人简介</h3>
+                    <p>我是许增灿，一名拥有5年经验的全栈开发工程师和UI/UX设计师。我热爱创造美观且功能强大的数字产品，专注于用户体验和技术创新。</p>
+                    <p>我擅长使用现代前端框架如React和Vue，同时精通后端技术如Node.js和Python。我相信技术应该为用户服务，因此我始终将用户体验放在首位。</p>
+                    <p>在我的职业生涯中，我曾参与过多个大型项目的开发，从电商平台到企业级应用，积累了丰富的实战经验。我热衷于学习新技术，并将其应用到实际项目中。</p>
                 </div>
-                <div class="about-image">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=young%20asian%20developer%20smiling%20in%20modern%20office&image_size=square" alt="个人照片">
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="skills">
-        <div class="container">
-            <h2>技能</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>前端开发</h3>
-                    <ul>
-                        <li>HTML5</li>
-                        <li>CSS3</li>
-                        <li>JavaScript (ES6+)</li>
-                        <li>React</li>
-                        <li>Vue</li>
-                        <li>TypeScript</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>后端开发</h3>
-                    <ul>
-                        <li>Node.js</li>
-                        <li>Express</li>
-                        <li>MongoDB</li>
-                        <li>MySQL</li>
-                        <li>RESTful API</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>其他技能</h3>
-                    <ul>
-                        <li>Git</li>
-                        <li>Linux</li>
-                        <li>UI/UX设计</li>
-                        <li>响应式设计</li>
-                        <li>性能优化</li>
-                    </ul>
+                <div class="about-image fade-in">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20portrait%20of%20a%20tech%20professional%20with%20glasses%20in%20dark%20mode%20setting&image_size=square_hd" alt="个人照片">
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="projects">
+    <section id="projects" class="projects">
         <div class="container">
-            <h2>项目</h2>
+            <h2 class="section-title fade-in">作品</h2>
             <div class="projects-grid">
-                <div class="project-card">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20dashboard%20with%20charts%20and%20metrics&image_size=landscape_16_9" alt="企业管理系统">
-                    <div class="project-card-content">
-                        <h3>企业管理系统</h3>
-                        <p>基于React和Node.js开发的企业管理系统，包含用户管理、数据统计和报表生成功能。</p>
-                    </div>
+                <div class="project-card fade-in">
+                    <h3>智能健康管理系统</h3>
+                    <p>基于React和Node.js开发的智能健康管理系统，支持用户追踪健康数据、设置健身目标和获取个性化健康建议。系统集成了智能设备数据同步功能。</p>
+                    <a href="#">查看项目</a>
                 </div>
-                <div class="project-card">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=ecommerce%20website%20with%20products%20and%20cart&image_size=landscape_16_9" alt="电商平台">
-                    <div class="project-card-content">
-                        <h3>电商平台</h3>
-                        <p>使用Vue和Express构建的电商平台，支持商品浏览、购物车管理和订单处理。</p>
-                    </div>
+                <div class="project-card fade-in">
+                    <h3>企业级数据分析平台</h3>
+                    <p>使用Vue和Python开发的企业级数据分析平台，提供实时数据可视化、报表生成和预测分析功能。平台采用模块化设计，支持自定义数据源接入。</p>
+                    <a href="#">查看项目</a>
                 </div>
-                <div class="project-card">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=personal%20portfolio%20website%20with%20projects&image_size=landscape_16_9" alt="个人作品集网站">
-                    <div class="project-card-content">
-                        <h3>个人作品集网站</h3>
-                        <p>为设计师朋友开发的个人作品集网站，展示其设计作品和个人信息。</p>
-                    </div>
+                <div class="project-card fade-in">
+                    <h3>沉浸式VR教育应用</h3>
+                    <p>结合React 360和WebXR技术开发的沉浸式VR教育应用，为学生提供交互式学习体验。应用包含多个学科的虚拟实验室和场景。</p>
+                    <a href="#">查看项目</a>
+                </div>
+                <div class="project-card fade-in">
+                    <h3>AI驱动的内容创作工具</h3>
+                    <p>使用Next.js和OpenAI API开发的AI内容创作工具，支持自动生成文章、社交媒体内容和营销文案。工具提供多种风格和语言选项。</p>
+                    <a href="#">查看项目</a>
+                </div>
+                <div class="project-card fade-in">
+                    <h3>区块链数字资产管理系统</h3>
+                    <p>基于以太坊智能合约开发的数字资产管理系统，支持加密货币交易、NFT管理和去中心化金融服务。系统采用多层安全架构。</p>
+                    <a href="#">查看项目</a>
+                </div>
+                <div class="project-card fade-in">
+                    <h3>实时协作设计工具</h3>
+                    <p>使用Socket.io和Canvas API开发的实时协作设计工具，支持多人同时编辑和评论。工具集成了版本控制和导出功能。</p>
+                    <a href="#">查看项目</a>
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="contact">
+    <section id="skills" class="skills">
         <div class="container">
-            <h2>联系方式</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p>如果你对我的工作感兴趣，或者有任何问题，欢迎随时联系我。</p>
-                    <ul>
-                        <li>邮箱：example@example.com</li>
-                        <li>电话：138-0013-8000</li>
-                        <li>GitHub：github.com/example</li>
-                    </ul>
+            <h2 class="section-title fade-in">技能</h2>
+            <div class="skills-container">
+                <div class="skill-item fade-in">HTML5</div>
+                <div class="skill-item fade-in">CSS3</div>
+                <div class="skill-item fade-in">JavaScript</div>
+                <div class="skill-item fade-in">TypeScript</div>
+                <div class="skill-item fade-in">React</div>
+                <div class="skill-item fade-in">Vue</div>
+                <div class="skill-item fade-in">Node.js</div>
+                <div class="skill-item fade-in">Python</div>
+                <div class="skill-item fade-in">MongoDB</div>
+                <div class="skill-item fade-in">PostgreSQL</div>
+                <div class="skill-item fade-in">Docker</div>
+                <div class="skill-item fade-in">AWS</div>
+                <div class="skill-item fade-in">Figma</div>
+                <div class="skill-item fade-in">Sketch</div>
+                <div class="skill-item fade-in">UI/UX设计</div>
+                <div class="skill-item fade-in">响应式设计</div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">联系方式</h2>
+            <div class="contact-info">
+                <div class="contact-item fade-in">
+                    <h3>邮箱</h3>
+                    <p><a href="mailto:xuzengcan@example.com">xuzengcan@example.com</a></p>
                 </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="姓名" required>
-                    <input type="email" placeholder="邮箱" required>
-                    <textarea placeholder="留言" required></textarea>
-                    <button type="submit">发送</button>
-                </form>
+                <div class="contact-item fade-in">
+                    <h3>电话</h3>
+                    <p>139-8888-9999</p>
+                </div>
+                <div class="contact-item fade-in">
+                    <h3>GitHub</h3>
+                    <p><a href="https://github.com/xuzengcan" target="_blank">github.com/xuzengcan</a></p>
+                </div>
+                <div class="contact-item fade-in">
+                    <h3>LinkedIn</h3>
+                    <p><a href="https://linkedin.com/in/xuzengcan" target="_blank">linkedin.com/in/xuzengcan</a></p>
+                </div>
+                <div class="contact-item fade-in">
+                    <h3>Twitter</h3>
+                    <p><a href="https://twitter.com/xuzengcan" target="_blank">@xuzengcan</a></p>
+                </div>
+                <div class="contact-item fade-in">
+                    <h3>个人网站</h3>
+                    <p><a href="https://xuzengcan.dev" target="_blank">xuzengcan.dev</a></p>
+                </div>
             </div>
         </div>
     </section>
     
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2026 我的个人网站. 保留所有权利.</p>
-                <div class="social-links">
-                    <a href="https://github.com/example">GitHub</a>
-                    <a href="https://linkedin.com/in/example">LinkedIn</a>
-                    <a href="https://twitter.com/example">Twitter</a>
-                </div>
-            </div>
+            <p>&copy; 2026 许增灿. 保留所有权利.</p>
         </div>
     </footer>
     
     <script>
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // 滚动动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // 平滑滚动
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 });
             });
-        });
-        
-        // 联系表单提交
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('感谢您的留言！我会尽快回复您。');
-            this.reset();
         });
     </script>
 </body>
